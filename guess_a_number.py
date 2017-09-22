@@ -5,7 +5,7 @@ import math
 # config
 low = 1
 high = 10000
-log = math.log(high, 2)
+log = math.log(high - low + 1, 2)
 limit = math.ceil(log)
 
 # helper functions
