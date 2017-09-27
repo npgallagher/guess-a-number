@@ -22,13 +22,16 @@ def get_guess(current_low, current_high):
     """
     pass
 
+
 def pick_number():
     """
     Ask the player to think of a number between low and high.
     Then  wait until the player presses enter.
     """
-    pass
-
+    print ("Think of a number between " + str(low) + " and " + str(high) + ".")
+    input ("Press ENTER to continue")
+    print  ((high + low) // 2)
+           
 def check_guess(guess):
     """
     Computer will ask if guess was too high, low, or correct.
@@ -37,6 +40,19 @@ def check_guess(guess):
              0 if the guess was correct
              1 if the guess was too high
     """
+    while True:
+        print ("Was my guess too high, too low, or correct?")
+        print ("(Type high, low, or correct)")
+        feedback = input().lower
+
+        if feedback == 'high':
+            return 1
+        elif feedback == 'low':
+            return -1
+        elif feedback == 'correct':
+            return 0
+        else:
+            print ("You must type 'high', 'low', or 'correct'")
 
 def show_result():
     """
