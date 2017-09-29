@@ -1,3 +1,6 @@
+#guess_a_number_ai
+#Noah G
+
 import random
 
 # config
@@ -20,7 +23,8 @@ def get_guess(current_low, current_high):
     """
     Return a truncated average of current low and high.
     """
-    pass
+    guess = (current_low + current_high) // 2
+    return guess
 
 
 def pick_number():
@@ -30,6 +34,7 @@ def pick_number():
     """
     print ("Think of a number between " + str(low) + " and " + str(high) + ".")
     input ("Press ENTER to continue")
+    print()
     print  ((high + low) // 2)
            
 def check_guess(guess):
@@ -41,24 +46,24 @@ def check_guess(guess):
              1 if the guess was too high
     """
     while True:
-        print ("Was my guess too high, too low, or correct?")
-        print ("(Type high, low, or correct)")
-        feedback = input().lower
+        print()
+        print ("Is " + str(guess) + " higher, lower, or did I guess correctly?")
+        feedback = input("(Type higher, lower, or correct)").lower()
 
-        if feedback == 'high':
+        if feedback == 'higher':
             return 1
-        elif feedback == 'low':
+        elif feedback == 'lower':
             return -1
         elif feedback == 'correct':
             return 0
         else:
-            print ("You must type 'high', 'low', or 'correct'")
+            print ("You must type 'higher', 'lower', or 'correct'")
 
-def show_result():
+def show_result(guess, rand):
     """
     Says the result of the game. (The computer might always win.)
     """
-    pass
+    print ("I won")
 
 def play_again():
     while True:
@@ -84,12 +89,14 @@ def play():
 
         if check == -1:
             # adjust current_low
-            pass
+            current_low = (guess + 1)
+            
         elif check == 1:
             # adjust current_high
-            pass
+            current_high = (guess - 1)
+            
 
-    show_result(guess, rand)
+    show_result#(guess, rand)
 
 
 # Game starts running here
