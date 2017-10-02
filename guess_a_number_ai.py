@@ -3,21 +3,25 @@
 
 import random
 
-# config
-low = 1
+#config
 high = 1000
-
-
+low = 1
+    
 # helper functions
+def get_name():
+    global name
+    name = input("Please type your name: ")
+    return name
+
 def show_start_screen():
     print("<><><><><><><><><><><><><>")
     print("<>  Guess a Number A.I  <>")
     print("<><><><><><><><><><><><><>")
 
 def show_credits():
-    print("Goodbye!")
+    print("Goodbye " + str(name) + "!")
     print()
-    print("This game was created by Noah.")
+    print("This game was created by Noah on October 2nd, 2017.")
     
 def get_guess(current_low, current_high):
     """
@@ -32,7 +36,8 @@ def pick_number():
     Ask the player to think of a number between low and high.
     Then  wait until the player presses enter.
     """
-    print ("Think of a number between " + str(low) + " and " + str(high) + ".")
+    print ()
+    print (str(name) + ", think of a number between " + str(low) + " and " + str(high) + ".")
     input ("Press ENTER to continue")
     print()
     print  ((high + low) // 2)
@@ -47,14 +52,14 @@ def check_guess(guess):
     """
     while True:
         print()
-        print ("Is " + str(guess) + " higher, lower, or did I guess correctly?")
+        print (str(name) + ", is " + str(guess) + " higher, lower, or did I guess correctly?")
         feedback = input("(Type higher, lower, or correct)").lower()
 
-        if feedback == 'higher':
+        if feedback == 'higher' or feedback == 'h' :
             return 1
-        elif feedback == 'lower':
+        elif feedback == 'lower' or feedback == 'l' :
             return -1
-        elif feedback == 'correct':
+        elif feedback == 'correct' or feedback == 'c' or feedback == 'y' or feedback == 'yes':
             return 0
         else:
             print ("You must type 'higher', 'lower', or 'correct'")
@@ -67,14 +72,14 @@ def show_result(guess, rand):
 
 def play_again():
     while True:
-        decision = input("Would you like to play again? (y/n) ")
+        decision = input(str(name) + ", would you like to play again? (y/n) ")
 
         if decision == 'y' or decision == 'yes':
             return True
         elif decision == 'n' or decision == 'no':
             return False
         else:
-            print("I don't understand. Please enter 'y' or 'n'.")
+            print(str(name) + ", I don't understand. Please enter 'y' or 'n'.")
 
 def play():
     current_low = low
@@ -98,9 +103,10 @@ def play():
 
     show_result#(guess, rand)
 
-
 # Game starts running here
 show_start_screen()
+
+get_name()
 
 playing = True
 
