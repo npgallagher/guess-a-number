@@ -1,12 +1,14 @@
+#
+#
 #guess_a_number_ai
 #Noah G
-
+#
+#
 import random
+import math
 
 #config
-high = 1000
-low = 1
-    
+
 # helper functions
 def get_name():
     global name
@@ -62,13 +64,13 @@ def check_guess(guess):
         elif feedback == 'correct' or feedback == 'c' or feedback == 'y' or feedback == 'yes':
             return 0
         else:
-            print ("You must type 'higher', 'lower', or 'correct'")
+            print (str(name) + ", ou must type 'higher', 'lower', or 'correct'")
 
-def show_result(guess, rand):
+def show_result():   #guess, rand
     """
     Says the result of the game. (The computer might always win.)
     """
-    print ("I won")
+    print (str(name) + ", I won in " + str(tries) + " guesses.")
 
 def play_again():
     while True:
@@ -82,9 +84,19 @@ def play_again():
             print(str(name) + ", I don't understand. Please enter 'y' or 'n'.")
 
 def play():
+    print (str(name) + ", please type the highest possible number")
+    global high
+    high = input()
+    high = int(high)
+    print (str(name) + ", please type the lowest possible number")
+    global low
+    low = input()
+    low = int(low)
     current_low = low
     current_high = high
     check = -1
+    global tries
+    tries = 0
     
     pick_number()
     
@@ -95,13 +107,15 @@ def play():
         if check == -1:
             # adjust current_low
             current_low = (guess + 1)
+            tries += 1
             
         elif check == 1:
             # adjust current_high
             current_high = (guess - 1)
+            tries += 1
             
 
-    show_result#(guess, rand)
+    show_result()   #(guess, rand)
 
 # Game starts running here
 show_start_screen()
